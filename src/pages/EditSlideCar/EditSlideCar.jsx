@@ -24,7 +24,7 @@ function EditSlideCar({ username }) {
           const updatedImages = [...prevImages];
           updatedImages[index] = imageUrl;
           return updatedImages;
-        } else {
+        } else {   
           return [...prevImages, imageUrl];
         }
       });

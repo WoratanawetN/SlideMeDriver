@@ -6,6 +6,10 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./OfferChoice.css";
 
+import car1 from "../../assets/driver-pic/car1.jpg";
+import car2 from "../../assets/driver-pic/car2.jpg";
+import car3 from "../../assets/driver-pic/car3.jpg";
+
 function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
     const [activeTab, setActiveTab] = useState("details");
 
@@ -25,7 +29,8 @@ function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
             address2: 'มหาวิทยาลัยศรีปทุม, 2410/2, ถนนพหลโยธิน, แขวงลาดยาว, เขตจตุจักร, กรุงเทพมหานคร, 10900, ประเทศไทย',
             carType: 'Sedan',
             moreDetail: 'รถคันนี้สีแดง',
-            selected: false
+            selected: false,
+            pic: car1
         },
         {
             id: 2,
@@ -36,7 +41,8 @@ function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
             address2: 'ถนนพหลโยธิน, แขวงอนุสาวรีย์, เขตบางเขน, กรุงเทพมหานคร, 10010, ประเทศไทย',
             carType: 'Truck',
             moreDetail: 'รถคันนี้สีดำ',
-            selected: false
+            selected: false,
+            pic: car2
         },
         {
             id: 3,
@@ -47,7 +53,8 @@ function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
             address2: 'ซอยวิภาวดีรังสิต 60 แยก 3-9, แขวงตลาดบางเขน, เขตหลักสี่, กรุงเทพมหานคร, 10210, ประเทศไทย',
             carType: 'SUV',
             moreDetail: 'รถคันนี้สีฟ้า',
-            selected: true
+            selected: true,
+            pic: car3
         },
     ]);
 
@@ -90,8 +97,6 @@ function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
         const newMap = L.map("map", {
             center: [lat, lng],
             zoom: 14,
-            dragging: false, // Make map undraggable
-            scrollWheelZoom: false, // Disable scroll zoom
             zoomControl: false, // Disable zoom buttons
         });
 
@@ -326,6 +331,15 @@ function OfferChoice({ saveLocation, setCurrentShowOrder, addOrders }) {
                             <div className="modal-contrainer">
                                 <Modal.Title clas>รายละเอียดเพิ่มเติม</Modal.Title>
 
+                                <img
+                                    src={
+                                        locationDetails.name === "วิชัย ทรงธรรม" ? car1 :
+                                            locationDetails.name === "ณัฐวุฒิ รุ่งเรืองกิจ" ? car2 :
+                                                locationDetails.name === "พัชรพล แสงมณี" ? car3 :
+                                                    "car3.jpg"
+                                    }
+                                    alt={locationDetails.name}
+                                />
                                 <div className="more-details-modal">
                                     <h3>{locationDetails.moreDetail}</h3>
                                 </div>
